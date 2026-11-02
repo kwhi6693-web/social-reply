@@ -5,7 +5,7 @@
 > 想表达的是真实的你，发出去的话也应该如此。
 
 [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](SKILL.md)
-[![Version](https://img.shields.io/badge/Version-2.0.2%20candidate-d97706?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-2.0.2-0e7490?style=flat-square)](CHANGELOG.md)
 [![Validation](https://github.com/kwhi6693-web/social-reply/actions/workflows/validate.yml/badge.svg)](https://github.com/kwhi6693-web/social-reply/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2f855a?style=flat-square)](LICENSE)
 [![Reply](https://img.shields.io/badge/Reply-One%20best%20reply-7c3aed?style=flat-square)](SKILL.md)
@@ -44,7 +44,7 @@
 
 ## 🧪 验收与兼容性
 
-当前为 **v2.0.2 candidate**，公开候选标签为 **v2.0.2-rc.1**。已有本地116项测试记录、52次离线工具入口调用记录，以及真实 ChatGPT Work 匿名验收的58次完整记录工具入口调用；这些是不同种类的证据，不等于相同数量的真实模型回复测试。名称和本页展示调整未改变运行逻辑，复用未受影响的结果。
+当前公开版本为 **v2.0.2**。正式发行标签不改变下列验证范围。已有本地116项测试记录、52次离线工具入口调用记录，以及真实 ChatGPT Work 匿名验收的58次完整记录工具入口调用；这些是不同种类的证据，不等于相同数量的真实模型回复测试。名称和本页展示调整未改变运行逻辑，复用未受影响的结果。
 
 现有已安装宿主中，限定回复样本、匿名画像读取与记忆纠正、自定义规则、基础理论和延展开关已有实际验证。自动选用技能有有限样本依据，不能据此保证所有消息都会自动触发，或证明每次均加载指定版本。
 
@@ -66,7 +66,7 @@
 
 ## 📦 安装与资料包区别
 
-从[候选版发布页](https://github.com/kwhi6693-web/social-reply/releases/tag/v2.0.2-rc.1)下载安装 ZIP 和匹配的 SHA-256 校验文件，核对后使用宿主支持的安装流程。不要把 GitHub 自动生成的源码 ZIP 当作已核验安装包。
+从[正式版发布页](https://github.com/kwhi6693-web/social-reply/releases/tag/v2.0.2)下载安装 ZIP 和匹配的 SHA-256 校验文件，核对后使用宿主支持的安装流程。不要把 GitHub 自动生成的源码 ZIP 当作已核验安装包。
 
 把发行包中的social-reply目录安装到支持Agent Skills的宿主技能目录并重新加载。宿主AI负责理解与生成；普通文本回复不要求Python，截图需要视觉能力。本地持久化工具需要Python 3.10+，仅使用标准库，以及授权文件权限。
 

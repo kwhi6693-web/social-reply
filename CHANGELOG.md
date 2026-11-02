@@ -1,5 +1,11 @@
 # 版本记录
 
+## 2.0.2 public release — 2026-11-02
+
+- Publish the stable v2.0.2 release with English release notes and English, Simplified Chinese, and Traditional Chinese READMEs.
+- Preserve v2.0.2-rc.1 and its original assets. Runtime behavior and private storage are unchanged.
+- Retain documented host-validation limitations; the stable label is not a claim that every host or performance metric has been verified.
+
 ## 2.0.2 — 2026-11-02
 
 - 命名：中文展示统一为“沟通辅助”，技术标识social-reply保持兼容；功能、规则、存储和版本号不变。

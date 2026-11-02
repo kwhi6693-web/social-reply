@@ -5,7 +5,7 @@
 > 想表達的是真實的你，發出去的話也應該如此。
 
 [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](SKILL.md)
-[![Version](https://img.shields.io/badge/Version-2.0.2%20candidate-d97706?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-2.0.2-0e7490?style=flat-square)](CHANGELOG.md)
 [![Validation](https://github.com/kwhi6693-web/social-reply/actions/workflows/validate.yml/badge.svg)](https://github.com/kwhi6693-web/social-reply/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2f855a?style=flat-square)](LICENSE)
 [![Reply](https://img.shields.io/badge/Reply-One%20best%20reply-7c3aed?style=flat-square)](SKILL.md)
@@ -44,7 +44,7 @@
 
 ## 🧪 驗收與相容性
 
-當前為 **v2.0.2 candidate**，公開候選標籤為 **v2.0.2-rc.1**。已有本地116項測試記錄、52次離線工具入口呼叫記錄，以及真實 ChatGPT Work 匿名驗收的58次完整記錄工具入口呼叫；這些是不同種類的證據，不等於相同數量的真實模型回覆測試。名稱和本頁展示調整未改變執行邏輯，復用未受影響的結果。
+目前公開版本為 **v2.0.2**。正式發行標籤不改變下列驗證範圍。已有本地116項測試記錄、52次離線工具入口呼叫記錄，以及真實 ChatGPT Work 匿名驗收的58次完整記錄工具入口呼叫；這些是不同種類的證據，不等於相同數量的真實模型回覆測試。名稱和本頁展示調整未改變執行邏輯，復用未受影響的結果。
 
 現有已安裝宿主中，限定回覆樣本、匿名畫像讀取與記憶糾正、自訂規則、基礎理論和延展開關已有實際驗證。自動選用技能有有限樣本依據，不能據此保證所有訊息都會自動觸發，或證明每次均載入指定版本。
 
@@ -66,7 +66,7 @@
 
 ## 📦 安裝與資料包區別
 
-從[候選版發佈頁](https://github.com/kwhi6693-web/social-reply/releases/tag/v2.0.2-rc.1)下載安裝 ZIP 和匹配的 SHA-256 校驗檔案，核對後使用宿主支援的安裝流程。不要把 GitHub 自動生成的原始碼 ZIP 當作已核驗安裝包。
+從[正式版發佈頁](https://github.com/kwhi6693-web/social-reply/releases/tag/v2.0.2)下載安裝 ZIP 和匹配的 SHA-256 校驗檔案，核對後使用宿主支援的安裝流程。不要把 GitHub 自動生成的原始碼 ZIP 當作已核驗安裝包。
 
 把發行包中的social-reply目錄安裝到支援Agent Skills的宿主技能目錄並重新載入。宿主AI負責理解與生成；普通文本回覆不要求Python，截圖需要視覺能力。本地持久化工具需要Python 3.10+，僅使用標準庫，以及授權檔案權限。
 

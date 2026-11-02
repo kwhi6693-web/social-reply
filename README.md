@@ -5,7 +5,7 @@
 > Express what you mean. Send a reply that sounds like you.
 
 [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](SKILL.md)
-[![Version](https://img.shields.io/badge/Version-2.0.2%20candidate-d97706?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-2.0.2-0e7490?style=flat-square)](CHANGELOG.md)
 [![Validation](https://github.com/kwhi6693-web/social-reply/actions/workflows/validate.yml/badge.svg)](https://github.com/kwhi6693-web/social-reply/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2f855a?style=flat-square)](LICENSE)
 [![Reply](https://img.shields.io/badge/Reply-One%20best%20reply-7c3aed?style=flat-square)](SKILL.md)
@@ -44,7 +44,7 @@ Eight logical layers are implemented by four core modules. See the [architecture
 
 ## 🧪 Validation and compatibility
 
-Current status: **v2.0.2 candidate**; the published candidate tag is **v2.0.2-rc.1**. Existing evidence includes 116 local tests, 52 offline tool-entry calls, and 58 fully recorded tool-entry calls in anonymous acceptance work on a real ChatGPT Work host. These are different kinds of evidence, not an equivalent number of model-reply tests. Naming and documentation changes do not alter runtime behavior; unaffected results are reused.
+Current public version: **v2.0.2**. The stable release designation does not expand the validation scope below. Existing evidence includes 116 local tests, 52 offline tool-entry calls, and 58 fully recorded tool-entry calls in anonymous acceptance work on a real ChatGPT Work host. These are different kinds of evidence, not an equivalent number of model-reply tests. Naming and documentation changes do not alter runtime behavior; unaffected results are reused.
 
 On an already installed host, bounded reply samples, anonymous profile reads and memory correction, custom rules, core theory, and extension switches have been exercised. Automatic selection has limited sample evidence; it does not establish that every message triggers the Skill or loads a particular version.
 
@@ -66,7 +66,7 @@ Anonymous examples do not require a relationship stage. The first execution must
 
 ## 📦 Installation and data packages
 
-Download the installable ZIP and matching SHA-256 file from the [candidate release](https://github.com/kwhi6693-web/social-reply/releases/tag/v2.0.2-rc.1). Verify the checksum, then install the complete social-reply folder using your host's supported Skill installation flow and reload. Use the attached installer rather than assuming GitHub's generated source ZIP is the verified installable package.
+Download the installable ZIP and matching SHA-256 file from the [release](https://github.com/kwhi6693-web/social-reply/releases/tag/v2.0.2). Verify the checksum, then install the complete social-reply folder using your host's supported Skill installation flow and reload. Use the attached installer rather than assuming GitHub's generated source ZIP is the verified installable package.
 
 The host AI handles understanding and generation. Ordinary text replies do not require Python; screenshots require vision. Local persistence tools use Python 3.10+, the standard library only, and authorized file permissions.
 
