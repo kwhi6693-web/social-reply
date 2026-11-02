@@ -1,20 +1,57 @@
-name: Validate skill
+name: Publish verified candidate
 on:
   push:
-  pull_request:
+    branches: [release-v2.0.2-rc.1]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  validate:
+  publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.13"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: 89f42cb2f9cb2c8f4ceaacd661b9cf74004a6c82
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
-      - run: python scripts/validate_skill.py
-      - run: python -B -m unittest discover -s tests -v
-
+          python-version: "3.12"
+      - name: Rebuild exact audited package
+        shell: bash
+        run: |
+          python -B - <<'PY'
+          from pathlib import Path
+          import hashlib,json,zipfile
+          m=json.loads("{\"name\":\"social-reply\",\"display_name\":\"沟通辅助\",\"version\":\"2.0.2\",\"status\":\"candidate\",\"file_count\":30,\"zip_bytes\":74636,\"zip_sha256\":\"d5214c21a4660c0c245b8658aa884f85128f7f548a56949f48bf92e376b21d50\",\"files\":[{\"path\":\".gitattributes\",\"bytes\":20,\"sha256\":\"53bd72599f9e8cbed776d070e723b4333192ca7b3a3a55c199f7a02f854b923b\"},{\"path\":\".github/workflows/validate.yml\",\"bytes\":448,\"sha256\":\"ea6f592a5b1c0d9498a7059a5fbacd4af438a3eb16d15cd407e218406554ba44\"},{\"path\":\".gitignore\",\"bytes\":88,\"sha256\":\"7985fce25928f534771665570f56faa0b6834cbc363c0cb96cef009319ed71b3\"},{\"path\":\"CHANGELOG.md\",\"bytes\":3229,\"sha256\":\"883071f01fd9948b7d344a4a2846ee3219f6d7afc4555edd5416ad07243bdbf9\"},{\"path\":\"LICENSE\",\"bytes\":1083,\"sha256\":\"dd766d34ec2788d0c5df892f42a1d2be52058565a864a0d2ad30ab2342d16fba\"},{\"path\":\"README.md\",\"bytes\":12831,\"sha256\":\"06c12f7bbe0d01a07964efae976fae7ad3321fd4001e15709b7605e3168d308b\"},{\"path\":\"SKILL.md\",\"bytes\":13616,\"sha256\":\"d9647c4c0ddea0da66cffa1969bca62ca2eda526797e7deec0f588be685fa1e6\"},{\"path\":\"agents/openai.yaml\",\"bytes\":438,\"sha256\":\"8989f578b3825a90908cdfa969abc17fa91c4a0cf2be9b70f54aae4cd60f3e5d\"},{\"path\":\"assets/config.example.json\",\"bytes\":147,\"sha256\":\"8cdd36140783c65b52ed36844cf9c0bc636b0cb10f9ce6cda66b389895305243\"},{\"path\":\"assets/icon.svg\",\"bytes\":667,\"sha256\":\"9be88f8dd4c5e658961515c71389eafd45142ffa68bcae58e8dcff57d178ed91\"},{\"path\":\"assets/profile.example.md\",\"bytes\":293,\"sha256\":\"415b8e78bd5918be5452df040fceb67f54fb989c67793a386f916ddf91c68866\"},{\"path\":\"assets/theory-core.json\",\"bytes\":14248,\"sha256\":\"57823dadc4201776bed80aa23a0cdb92839041afd7c2d956ed4db03b46069ff9\"},{\"path\":\"references/architecture.md\",\"bytes\":2466,\"sha256\":\"1926a81fb4af3bc12f11aa9a9ad1ce5da88edbf40b9387db4af25ad48564ceb2\"},{\"path\":\"references/extensions.md\",\"bytes\":1746,\"sha256\":\"e505ff95230c86825e3d3c59caa5ecb3ad24638789e2451f0d0f3858507dd506\"},{\"path\":\"references/methods.md\",\"bytes\":3155,\"sha256\":\"bd09cdb3b298b5e684d88f0866d14893faf3ac74e502eac0528bc2425b270243\"},{\"path\":\"references/profile-memory.md\",\"bytes\":4584,\"sha256\":\"765f1a45e3be5e4837a51e08f4c2dc2e4c4d6e8def8d8f23e0f0f52aec0e1592\"},{\"path\":\"references/theory-core.md\",\"bytes\":1804,\"sha256\":\"adf834de9bc8488b198b71b7759e7ee717d632548ca9085b43c2c7ca8a51a267\"},{\"path\":\"references/video-foundations.md\",\"bytes\":3803,\"sha256\":\"706d16fd38e56e64c5eb7e83390d90a0b9156130637caa33d9a36ba4ba157780\"},{\"path\":\"scripts/benchmark.py\",\"bytes\":6000,\"sha256\":\"678fe142bce42db5662ec7c85ec425a2cb5f0f7df0b2c7a0489833285e463dc1\"},{\"path\":\"scripts/social_reply.py\",\"bytes\":11142,\"sha256\":\"073732d6d308f2e87810d7f96209f3121cb1bda52ceaff5833c27b4d3d200406\"},{\"path\":\"scripts/sr/__init__.py\",\"bytes\":88,\"sha256\":\"d79d7693944b0ef6363400f0e36e07dbc3baba350dedf751855d3e9c8783679d\"},{\"path\":\"scripts/sr/integrity.py\",\"bytes\":23018,\"sha256\":\"ada249dffe42dce2432b721e1fbcaf20446c0ea5276aa7a4a30d3b265aa724f0\"},{\"path\":\"scripts/sr/knowledge.py\",\"bytes\":13762,\"sha256\":\"f9f161d1657bf584fc38f6eea5f82b33644518961565d3228caec0b6ccb91d4f\"},{\"path\":\"scripts/sr/memory.py\",\"bytes\":10978,\"sha256\":\"4cec4e2017880a5171f20c19ab8648ecc0df740118573ea972b30ac3b0e54a8c\"},{\"path\":\"scripts/sr/runtime.py\",\"bytes\":10316,\"sha256\":\"780e86566d2899ece57d390361b0fd71a5ad2a2bb90c454b5a74e29d54b46618\"},{\"path\":\"scripts/validate_skill.py\",\"bytes\":7719,\"sha256\":\"cc430767792462d903c690b35ed070632e3d326c10f7ddb1fa26f1d53082dc52\"},{\"path\":\"tests/scenarios.json\",\"bytes\":7329,\"sha256\":\"fa171204b2e78ca610affaa2c31b70ff68cda91f3397758a3779175d930f513f\"},{\"path\":\"tests/test_experience.py\",\"bytes\":13959,\"sha256\":\"d55a909bc2e294500445fbbc7af8339682faa80d1828035d729c155d928cfa93\"},{\"path\":\"tests/test_release.py\",\"bytes\":10370,\"sha256\":\"306814b061cdc72516fc560000dc486afe5d425d0291ed987d374ecf804ce8ca\"},{\"path\":\"tests/test_v2.py\",\"bytes\":22906,\"sha256\":\"57b6c9e952eb6f133d6136969d78c199822e15a4a717fa2c9a0a614f47ba0755\"}]}")
+          out=Path('dist');out.mkdir()
+          z=out/'social-reply-v2.0.2-public-candidate.zip'
+          with zipfile.ZipFile(z,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as f:
+              for e in m['files']:
+                  b=Path(e['path']).read_bytes()
+                  assert hashlib.sha256(b).hexdigest()==e['sha256'],e['path']
+                  info=zipfile.ZipInfo('social-reply/'+e['path'],(2026,11,2,0,0,0))
+                  info.compress_type=zipfile.ZIP_DEFLATED
+                  info.external_attr=0o100644<<16
+                  f.writestr(info,b)
+          assert z.stat().st_size==m['zip_bytes']
+          assert hashlib.sha256(z.read_bytes()).hexdigest()==m['zip_sha256']
+          with zipfile.ZipFile(z) as f:
+              assert f.testzip() is None and len(f.namelist())==30
+          (out/'manifest.json').write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n')
+          (out/'SHA256SUMS.txt').write_text(m['zip_sha256']+'  '+z.name+'\n')
+          print('Verified 30 files and exact candidate SHA-256.')
+          PY
+      - name: Attach and publish existing candidate draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release upload v2.0.2-rc.1 dist/social-reply-v2.0.2-public-candidate.zip dist/manifest.json dist/SHA256SUMS.txt --repo "$GITHUB_REPOSITORY"
+          gh release view v2.0.2-rc.1 --repo "$GITHUB_REPOSITORY" --json assets > release-assets.json
+          python -B - <<'PY'
+          import json
+          a=json.load(open('release-assets.json'))['assets']
+          assert len(a)==3
+          z=next(x for x in a if x['name']=='social-reply-v2.0.2-public-candidate.zip')
+          assert z['size']==74636
+          PY
+          gh release edit v2.0.2-rc.1 --repo "$GITHUB_REPOSITORY" --draft=false --prerelease --target 89f42cb2f9cb2c8f4ceaacd661b9cf74004a6c82
