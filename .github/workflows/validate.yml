@@ -1,4 +1,4 @@
-name: Publish stable v2.0.2
+name: Finalize verified stable release
 on:
   push:
     branches: [release-v2.0.2]
@@ -8,56 +8,26 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: 6966d9f42e5351644ca40189a3837fa0cc5a2fec
-          persist-credentials: false
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Verify source and rebuild installer
-        run: |
-          python -B scripts/validate_skill.py
-          python -B - <<'PY'
-          from pathlib import Path
-          import hashlib,json,zipfile
-          m=json.loads("{\"name\":\"social-reply\",\"display_name\":\"沟通辅助\",\"version\":\"2.0.2\",\"status\":\"stable release; documented validation limitations retained\",\"file_count\":32,\"zip_bytes\":88342,\"zip_sha256\":\"d665a73a4d30482222abff5ea870998a6c07b66da07000a77cea8a2beeca248d\",\"files\":[{\"path\":\".gitattributes\",\"bytes\":20,\"sha256\":\"53bd72599f9e8cbed776d070e723b4333192ca7b3a3a55c199f7a02f854b923b\"},{\"path\":\".github/workflows/validate.yml\",\"bytes\":448,\"sha256\":\"ea6f592a5b1c0d9498a7059a5fbacd4af438a3eb16d15cd407e218406554ba44\"},{\"path\":\".gitignore\",\"bytes\":88,\"sha256\":\"7985fce25928f534771665570f56faa0b6834cbc363c0cb96cef009319ed71b3\"},{\"path\":\"CHANGELOG.md\",\"bytes\":3637,\"sha256\":\"6a9f5a3a799df665879cd0ca2cd9107154afe591c1a457617cf36813603a57ab\"},{\"path\":\"LICENSE\",\"bytes\":1083,\"sha256\":\"dd766d34ec2788d0c5df892f42a1d2be52058565a864a0d2ad30ab2342d16fba\"},{\"path\":\"README.md\",\"bytes\":15491,\"sha256\":\"8d89b684d4275400d1240a6e347ab29acf99bdbf2bab351459fcff1bf0acfde1\"},{\"path\":\"README.zh-CN.md\",\"bytes\":13314,\"sha256\":\"9b0173cce828a8e82311a49dbdfa55de349101faf57a10affbfe567dd74b7492\"},{\"path\":\"README.zh-TW.md\",\"bytes\":13346,\"sha256\":\"2c515554791d99775860a74a1a7957d25d5d1cd3e439b6321bb5aa845c655cc6\"},{\"path\":\"SKILL.md\",\"bytes\":13616,\"sha256\":\"d9647c4c0ddea0da66cffa1969bca62ca2eda526797e7deec0f588be685fa1e6\"},{\"path\":\"agents/openai.yaml\",\"bytes\":438,\"sha256\":\"8989f578b3825a90908cdfa969abc17fa91c4a0cf2be9b70f54aae4cd60f3e5d\"},{\"path\":\"assets/config.example.json\",\"bytes\":147,\"sha256\":\"8cdd36140783c65b52ed36844cf9c0bc636b0cb10f9ce6cda66b389895305243\"},{\"path\":\"assets/icon.svg\",\"bytes\":667,\"sha256\":\"9be88f8dd4c5e658961515c71389eafd45142ffa68bcae58e8dcff57d178ed91\"},{\"path\":\"assets/profile.example.md\",\"bytes\":293,\"sha256\":\"415b8e78bd5918be5452df040fceb67f54fb989c67793a386f916ddf91c68866\"},{\"path\":\"assets/theory-core.json\",\"bytes\":14248,\"sha256\":\"57823dadc4201776bed80aa23a0cdb92839041afd7c2d956ed4db03b46069ff9\"},{\"path\":\"references/architecture.md\",\"bytes\":2466,\"sha256\":\"1926a81fb4af3bc12f11aa9a9ad1ce5da88edbf40b9387db4af25ad48564ceb2\"},{\"path\":\"references/extensions.md\",\"bytes\":1746,\"sha256\":\"e505ff95230c86825e3d3c59caa5ecb3ad24638789e2451f0d0f3858507dd506\"},{\"path\":\"references/methods.md\",\"bytes\":3155,\"sha256\":\"bd09cdb3b298b5e684d88f0866d14893faf3ac74e502eac0528bc2425b270243\"},{\"path\":\"references/profile-memory.md\",\"bytes\":4584,\"sha256\":\"765f1a45e3be5e4837a51e08f4c2dc2e4c4d6e8def8d8f23e0f0f52aec0e1592\"},{\"path\":\"references/theory-core.md\",\"bytes\":1804,\"sha256\":\"adf834de9bc8488b198b71b7759e7ee717d632548ca9085b43c2c7ca8a51a267\"},{\"path\":\"references/video-foundations.md\",\"bytes\":3803,\"sha256\":\"706d16fd38e56e64c5eb7e83390d90a0b9156130637caa33d9a36ba4ba157780\"},{\"path\":\"scripts/benchmark.py\",\"bytes\":6000,\"sha256\":\"678fe142bce42db5662ec7c85ec425a2cb5f0f7df0b2c7a0489833285e463dc1\"},{\"path\":\"scripts/social_reply.py\",\"bytes\":11142,\"sha256\":\"073732d6d308f2e87810d7f96209f3121cb1bda52ceaff5833c27b4d3d200406\"},{\"path\":\"scripts/sr/__init__.py\",\"bytes\":88,\"sha256\":\"d79d7693944b0ef6363400f0e36e07dbc3baba350dedf751855d3e9c8783679d\"},{\"path\":\"scripts/sr/integrity.py\",\"bytes\":23018,\"sha256\":\"ada249dffe42dce2432b721e1fbcaf20446c0ea5276aa7a4a30d3b265aa724f0\"},{\"path\":\"scripts/sr/knowledge.py\",\"bytes\":13762,\"sha256\":\"f9f161d1657bf584fc38f6eea5f82b33644518961565d3228caec0b6ccb91d4f\"},{\"path\":\"scripts/sr/memory.py\",\"bytes\":10978,\"sha256\":\"4cec4e2017880a5171f20c19ab8648ecc0df740118573ea972b30ac3b0e54a8c\"},{\"path\":\"scripts/sr/runtime.py\",\"bytes\":10316,\"sha256\":\"780e86566d2899ece57d390361b0fd71a5ad2a2bb90c454b5a74e29d54b46618\"},{\"path\":\"scripts/validate_skill.py\",\"bytes\":7757,\"sha256\":\"ab9d95a38e450dbe4761d7d27050257ce9691e07dbd1476f6185d60753e6c8ff\"},{\"path\":\"tests/scenarios.json\",\"bytes\":7329,\"sha256\":\"fa171204b2e78ca610affaa2c31b70ff68cda91f3397758a3779175d930f513f\"},{\"path\":\"tests/test_experience.py\",\"bytes\":13959,\"sha256\":\"d55a909bc2e294500445fbbc7af8339682faa80d1828035d729c155d928cfa93\"},{\"path\":\"tests/test_release.py\",\"bytes\":10370,\"sha256\":\"306814b061cdc72516fc560000dc486afe5d425d0291ed987d374ecf804ce8ca\"},{\"path\":\"tests/test_v2.py\",\"bytes\":22906,\"sha256\":\"57b6c9e952eb6f133d6136969d78c199822e15a4a717fa2c9a0a614f47ba0755\"}]}")
-          out=Path('dist');out.mkdir()
-          z=out/'social-reply-v2.0.2.zip'
-          with zipfile.ZipFile(z,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as f:
-              for e in m['files']:
-                  b=Path(e['path']).read_bytes()
-                  assert hashlib.sha256(b).hexdigest()==e['sha256'],e['path']
-                  i=zipfile.ZipInfo('social-reply/'+e['path'],(2026,11,2,0,0,0))
-                  i.compress_type=zipfile.ZIP_DEFLATED
-                  i.external_attr=0o100644<<16
-                  f.writestr(i,b)
-          assert z.stat().st_size==m['zip_bytes']
-          assert hashlib.sha256(z.read_bytes()).hexdigest()==m['zip_sha256']
-          with zipfile.ZipFile(z) as f:
-              assert f.testzip() is None and len(f.namelist())==32
-          (out/'manifest.json').write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n')
-          (out/'SHA256SUMS.txt').write_text(m['zip_sha256']+'  '+z.name+'\n')
-          Path('release-notes.md').write_text("# Social Reply v2.0.2\n\nOne natural reply, grounded in what you actually mean.\n\nSocial Reply is a lightweight Agent Skill for personal conversations. It combines the current context, your intent, compact profiles, and relevant communication guidance to produce one ready-to-send reply by default.\n\n## Highlights\n\n- One final reply by default, with analysis available when requested.\n- Separate private profiles, source evidence, and memory management.\n- Per-turn, per-person, global, and long-term expression preferences.\n- 32 core communication methods and optional reviewed experience extensions.\n- Separate fast, standard, and deep processing paths.\n- English, Simplified Chinese, and Traditional Chinese READMEs with matching navigation and badges.\n- No private profiles, real chat records, original videos, credentials, or machine-specific paths in the installer.\n\n## Install\n\nDownload **social-reply-v2.0.2.zip** and **SHA256SUMS.txt** from the release assets. Verify the checksum, then install the complete `social-reply/` folder using your host's supported Skill installation flow. Do not substitute GitHub's automatically generated source archive for the verified installer.\n\n- Installer size: **88,342 bytes**\n- Files: **32**\n- SHA-256: `d665a73a4d30482222abff5ea870998a6c07b66da07000a77cea8a2beeca248d`\n- Persistence tools: **Python 3.10+**, standard library only, and authorized private storage.\n- Reply generation: a host model supporting Agent Skills; screenshots additionally require vision.\n\n## Validation and scope\n\nThe source passed the repository's Python 3.10 and 3.13 CI. Publication rebuilds the package from the pinned source commit and verifies every file and the complete ZIP checksum before uploading. Existing local and real-host anonymous evidence is documented in the README; software tests are not equivalent to model-response quality tests.\n\nThis is the stable v2.0.2 distribution. The stable designation does not expand the measured validation scope: independent clean-host first installation, complete version binding for automatic loading, actual model token usage and generation timing, long-term cross-device persistence, and other operating systems remain unverified.\n\nThis release updates distribution documentation and includes the three localized READMEs. Core runtime behavior is unchanged. The earlier **v2.0.2-rc.1** release and its original assets are preserved.\n\n## Privacy and license\n\nKeep personal data outside the installation directory. Public project commits use GitHub no-reply addresses. User content and third-party source materials retain their own rights; code and original documentation are licensed under MIT.\n")
-          PY
-      - name: Publish verified stable release
+      - name: Verify existing draft and publish
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          gh api repos/"$GITHUB_REPOSITORY"/releases/431573239 > existing-draft.json
           gh api repos/"$GITHUB_REPOSITORY"/actions/runs/41463876475 > source-ci.json
-          python -B - <<'PY'
+          python3 -B - <<'PY'
           import json
+          r=json.load(open('existing-draft.json'))
+          expected=json.loads("{\"social-reply-v2.0.2.zip\":{\"size\":88342,\"digest\":\"sha256:d665a73a4d30482222abff5ea870998a6c07b66da07000a77cea8a2beeca248d\"},\"manifest.json\":{\"size\":5264,\"digest\":\"sha256:2bff78d9f2f94d4c145f05d915b37e651c11238dc2f59a00ac42c1b2a7f5800d\"},\"SHA256SUMS.txt\":{\"size\":90,\"digest\":\"sha256:2ce00eb08c3f0a7df952f256ad697ff8a6ed3925e3dd660e9708e83e5e56f10d\"}}")
+          assert r['tag_name']=='v2.0.2' and r['draft'] and not r['prerelease']
+          assert r['name']=='Social Reply v2.0.2'
+          assert r['target_commitish']=='6966d9f42e5351644ca40189a3837fa0cc5a2fec'
+          assert len(r['assets'])==3
+          for a in r['assets']:
+              e=expected[a['name']]
+              assert a['state']=='uploaded' and a['size']==e['size'] and a['digest']==e['digest']
+          assert r['body']=="# Social Reply v2.0.2\n\nOne natural reply, grounded in what you actually mean.\n\nSocial Reply is a lightweight Agent Skill for personal conversations. It combines the current context, your intent, compact profiles, and relevant communication guidance to produce one ready-to-send reply by default.\n\n## Highlights\n\n- One final reply by default, with analysis available when requested.\n- Separate private profiles, source evidence, and memory management.\n- Per-turn, per-person, global, and long-term expression preferences.\n- 32 core communication methods and optional reviewed experience extensions.\n- Separate fast, standard, and deep processing paths.\n- English, Simplified Chinese, and Traditional Chinese READMEs with matching navigation and badges.\n- No private profiles, real chat records, original videos, credentials, or machine-specific paths in the installer.\n\n## Install\n\nDownload **social-reply-v2.0.2.zip** and **SHA256SUMS.txt** from the release assets. Verify the checksum, then install the complete `social-reply/` folder using your host's supported Skill installation flow. Do not substitute GitHub's automatically generated source archive for the verified installer.\n\n- Installer size: **88,342 bytes**\n- Files: **32**\n- SHA-256: `d665a73a4d30482222abff5ea870998a6c07b66da07000a77cea8a2beeca248d`\n- Persistence tools: **Python 3.10+**, standard library only, and authorized private storage.\n- Reply generation: a host model supporting Agent Skills; screenshots additionally require vision.\n\n## Validation and scope\n\nThe source passed the repository's Python 3.10 and 3.13 CI. Publication rebuilds the package from the pinned source commit and verifies every file and the complete ZIP checksum before uploading. Existing local and real-host anonymous evidence is documented in the README; software tests are not equivalent to model-response quality tests.\n\nThis is the stable v2.0.2 distribution. The stable designation does not expand the measured validation scope: independent clean-host first installation, complete version binding for automatic loading, actual model token usage and generation timing, long-term cross-device persistence, and other operating systems remain unverified.\n\nThis release updates distribution documentation and includes the three localized READMEs. Core runtime behavior is unchanged. The earlier **v2.0.2-rc.1** release and its original assets are preserved.\n\n## Privacy and license\n\nKeep personal data outside the installation directory. Public project commits use GitHub no-reply addresses. User content and third-party source materials retain their own rights; code and original documentation are licensed under MIT.\n"
           c=json.load(open('source-ci.json'))
           assert c['head_sha']=='6966d9f42e5351644ca40189a3837fa0cc5a2fec' and c['status']=='completed' and c['conclusion']=='success'
+          print('Verified existing draft, three exact attachments, English notes and source CI.')
           PY
-          gh release create v2.0.2 dist/social-reply-v2.0.2.zip dist/manifest.json dist/SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --target 6966d9f42e5351644ca40189a3837fa0cc5a2fec --title "Social Reply v2.0.2" --notes-file release-notes.md --draft
-          gh api repos/"$GITHUB_REPOSITORY"/releases/tags/v2.0.2 > release-check.json
-          python -B - <<'PY'
-          import json
-          r=json.load(open('release-check.json'));a=r['assets']
-          assert r['draft'] and len(a)==3
-          z=next(x for x in a if x['name']=='social-reply-v2.0.2.zip')
-          assert z['size']==88342
-          assert z['digest']=='sha256:d665a73a4d30482222abff5ea870998a6c07b66da07000a77cea8a2beeca248d'
-          PY
-          gh release edit v2.0.2 --repo "$GITHUB_REPOSITORY" --draft=false --prerelease=false --latest
+          gh api --method PATCH repos/"$GITHUB_REPOSITORY"/releases/431573239 -F draft=false -F prerelease=false -f make_latest=true --jq '{tag: .tag_name, draft: .draft, prerelease: .prerelease, url: .html_url}'
