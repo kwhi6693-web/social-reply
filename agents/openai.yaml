@@ -1,0 +1,13 @@
+interface:
+  display_name: 沟通辅助
+  short_description: 依据真实语境辅助沟通与回复，支持画像记忆、自定义表达和可选理论延展
+  default_prompt: 使用 $social-reply，结合真实语境和我的表达偏好，帮我拟一条自然合适的回复。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  allow_implicit_invocation: true
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
