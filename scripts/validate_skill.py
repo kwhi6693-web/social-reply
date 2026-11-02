@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 ALLOWED = {
-    "SKILL.md", "README.md", "LICENSE", ".gitignore", ".gitattributes",
+    "SKILL.md", "README.md", "README.zh-CN.md", "README.zh-TW.md", "LICENSE", ".gitignore", ".gitattributes",
     ".github/workflows/validate.yml", "agents/openai.yaml",
     "references/methods.md", "references/video-foundations.md",
     "CHANGELOG.md", "references/profile-memory.md", "references/theory-core.md",

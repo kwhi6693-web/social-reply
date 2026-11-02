@@ -1,6 +1,8 @@
-# 💬 沟通辅助 · Social Reply
+# 💬 Social Reply
 
-> 想表达的是真实的你，发出去的话也应该如此。
+[English](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
+
+> Express what you mean. Send a reply that sounds like you.
 
 [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](SKILL.md)
 [![Version](https://img.shields.io/badge/Version-2.0.2%20candidate-d97706?style=flat-square)](CHANGELOG.md)
@@ -9,150 +11,162 @@
 [![Reply](https://img.shields.io/badge/Reply-One%20best%20reply-7c3aed?style=flat-square)](SKILL.md)
 [![Memory](https://img.shields.io/badge/Memory-Private%20by%20design-0e7490?style=flat-square)](references/profile-memory.md)
 
-**直达：** [开始使用](#-直接使用) · [安装](#-安装与资料包区别) · [功能地图](#-功能地图) · [验收范围](#-验收与兼容性) · [开发维护](#-维护)
+**Go to:** [Start](#-quick-start) · [Install](#-installation-and-data-packages) · [Features](#-feature-map) · [Validation](#-validation-and-compatibility) · [Maintenance](#-maintenance)
 
-## 🎯 一句话，刚刚好
+## 🎯 One reply, just right
 
-收到消息，不知道怎么回？把对话文字或截图交给沟通辅助：结合真实语境、你的意愿与表达偏好，默认给你**一条自然、可直接发送的回复**。
+Not sure how to reply? Share the chat text or a screenshot. Social Reply considers the actual context, your intentions, and your expression preferences, then gives you **one natural reply you can send directly** by default.
 
-朋友、熟人和关系沟通都可以使用，无需先给关系贴标签。需要复盘时再展开；适合不回复时，也会直接说明。
+Use it with friends, acquaintances, and relationship conversations without first assigning a relationship label. Ask for a review when you want more detail. When no reply is appropriate, it can say so.
 
 ```text
-帮我回一句，自然一点，不加表情。
-不像我，少一点客套。
-对这个人以后简短一些。
-查看你记住了什么。
+Help me reply naturally, without emoji.
+That does not sound like me. Make it less formal.
+Keep my replies to this person shorter from now on.
+Show me what you remember.
 ```
 
-**你决定表达什么，Skill 帮你表达得更合适。** 不猜测未提供的事实，不把推断写成对方的真实心理。
+**You decide what to express; the Skill helps you express it.** It must not invent missing facts or present an inference as another person's actual thoughts.
 
-## 🧩 功能地图
+## 🧩 Feature map
 
-| 你需要什么 | Skill 怎么帮你 |
+| What you need | How the Skill helps |
 |---|---|
-| 💬 现在就回 | 结合当前事实，默认输出唯一成稿 |
-| 🎛️ 更像自己 | 单次、人物专属、全局和长期偏好分开管理 |
-| 🧠 记住重要的事 | 精简画像与原始证据分离，支持纠正、导出和关联删除 |
-| 📚 有依据地参考 | 32条基础方法按主题读取，保留适用条件与来源说明 |
-| 🌱 慢慢积累经验 | 延展默认关闭，可审核、启停、撤销；与基础理论独立 |
-| ⚡ 日常保持轻快 | 快速、标准和深度路径分开，无关资料不默认全量加载 |
-| 🔐 资料由你管理 | 私人数据与安装目录分开，支持校验后的备份和新目录恢复 |
+| 💬 Reply now | One final reply grounded in current facts |
+| 🎛️ Sound like yourself | Separate settings for one turn, one person, global rules, and lasting preferences |
+| 🧠 Remember what matters | Compact profiles separated from source evidence, with correction, export, and linked deletion |
+| 📚 Use relevant guidance | 32 core methods retrieved by topic, with applicability and source notes |
+| 🌱 Learn from experience | Optional extensions, off by default, with review, activation, suspension, and revocation; separate from core theory |
+| ⚡ Keep daily use light | Separate fast, standard, and deep paths; unrelated material is not loaded in full by default |
+| 🔐 Control your data | Private data outside the installation, verified backups, and recovery into a new directory |
 
-八个逻辑功能层，由四个核心模块实现。详见[架构说明](references/architecture.md)。
+Eight logical layers are implemented by four core modules. See the [architecture](references/architecture.md).
 
-## 🧪 验收与兼容性
+## 🧪 Validation and compatibility
 
-当前为 **v2.0.2 candidate**。已有本地116项测试记录、52次离线工具入口调用记录，以及真实 ChatGPT Work 匿名验收的58次完整记录工具入口调用；这些是不同种类的证据，不等于相同数量的真实模型回复测试。名称和本页展示调整未改变运行逻辑，复用未受影响的结果。
+Current status: **v2.0.2 candidate**; the published candidate tag is **v2.0.2-rc.1**. Existing evidence includes 116 local tests, 52 offline tool-entry calls, and 58 fully recorded tool-entry calls in anonymous acceptance work on a real ChatGPT Work host. These are different kinds of evidence, not an equivalent number of model-reply tests. Naming and documentation changes do not alter runtime behavior; unaffected results are reused.
 
-现有已安装宿主中，限定回复样本、匿名画像读取与记忆纠正、自定义规则、基础理论和延展开关已有实际验证。自动选用技能有有限样本依据，不能据此保证所有消息都会自动触发，或证明每次均加载指定版本。
+On an already installed host, bounded reply samples, anonymous profile reads and memory correction, custom rules, core theory, and extension switches have been exercised. Automatic selection has limited sample evidence; it does not establish that every message triggers the Skill or loads a particular version.
 
-**仍未验证：** 独立干净宿主首次ZIP安装、自动加载正文的完整版本绑定、实际模型Token与首次有效回复及完整生成延迟、长期跨设备持续性及其他操作系统。CI徽标展示目标仓库的真实运行状态；配置文件存在不等于云端CI已通过。
+**Still unverified:** first ZIP installation in an independent clean host, complete version binding for automatic body loading, actual model token usage and first-effective-reply/full-generation latency, long-term cross-device persistence, and other operating systems. The CI badge shows the repository's real workflow status; a workflow file alone does not prove that CI ran successfully.
 
-普通文本回复需要支持Agent Skills的模型宿主；截图需要视觉能力。私有数据工具需要Python 3.10+及授权文件访问。工具负责数据管理，回复由宿主模型生成；本地准备速度不等于模型生成速度。
+Text replies require a model host supporting Agent Skills; screenshots require vision. Private data tools require Python 3.10+ and authorized file access. Tools manage data; the host model generates replies. Local preparation speed is not model generation speed.
 
-## ⚡ 直接使用
+## ⚡ Quick start
 
-安装后发聊天文字或截图，说“帮我回一句”即可。无需先建档或设置风格。
+After installation, send chat text or a screenshot and ask, “Help me reply.” There is no mandatory profile setup or style questionnaire.
 
-匿名例子不必先说明关系阶段。Skill首次执行需要加载完整SKILL.md正文；后续可复用已加载内容。若宿主没有选用技能，可明确说“使用沟通辅助，帮我回一句”。只能看到简介不能证明完整规则已生效；维护验收应单独核对加载记录，不让普通用户为每条回复提供路径。
+Anonymous examples do not require a relationship stage. The first execution must load the complete SKILL.md body; later turns may reuse it. If the host does not select the Skill, explicitly ask, “Use $social-reply to help me reply.” Seeing its description alone does not prove the full rules are active. Maintainers should verify loading evidence separately; ordinary users should not need to supply file paths with each reply.
 
-- “不像我，少一点客套”：直接换一条，本轮生效。
-- “对这个人以后不加表情”：只修改该人物的私人设置。
-- “查看当前设置”或“你记住了什么”：查看生效范围、来源与待核实结论。
-- “参考已批准经验”：开启应用；“暂停学习”：停止归纳候选，两者分别控制。
-- “记住这条重要信息”“备份我的资料”：具备授权存储时才执行并核验；缺少能力会如实说明。
+- “Less formal; that does not sound like me”: get one replacement, for this turn only.
+- “Do not use emoji with this person from now on”: update only that person's private settings.
+- “Show current settings” or “What do you remember?”: inspect effective scope, sources, and pending claims.
+- “Use approved experience”: enable application; “Pause learning”: stop proposing new extensions. These are separate switches.
+- “Remember this important fact” or “Back up my data”: execute and verify only when authorized storage is available; otherwise state the limitation.
 
-## 📦 安装与资料包区别
+## 📦 Installation and data packages
 
-把发行包中的social-reply目录安装到支持Agent Skills的宿主技能目录并重新加载。宿主AI负责理解与生成；普通文本回复不要求Python，截图需要视觉能力。本地持久化工具需要Python 3.10+，仅使用标准库，以及授权文件权限。
+Download the installable ZIP and matching SHA-256 file from the [candidate release](https://github.com/kwhi6693-web/social-reply/releases/tag/v2.0.2-rc.1). Verify the checksum, then install the complete social-reply folder using your host's supported Skill installation flow and reload. Use the attached installer rather than assuming GitHub's generated source ZIP is the verified installable package.
 
-公开安装包用于安装；私人迁移包、完整项目资料归档和数据库备份均含私人数据，只用于个人保管与恢复，不作为公开安装包上传。安装不需要32段原始视频或私人迁移包。已安装宿主可直接使用；技能名称为social-reply。
+The host AI handles understanding and generation. Ordinary text replies do not require Python; screenshots require vision. Local persistence tools use Python 3.10+, the standard library only, and authorized file permissions.
 
-    使用 $social-reply 回复这段聊天，只给一条最合适的回复。
-    使用 $social-reply。本轮自定义：简洁自然，不加表情，最多三十字。
-    使用 $social-reply 分析这次邀约中的事实和未知。
+The public installer is for installation. Private migration packages, complete project archives, and database backups contain private data and are only for personal retention and recovery; do not upload them as public installers. Installation does not require the 32 original videos or a private migration package. The invocation name is social-reply.
 
-私人身份、语气、关系目标和禁区不随公开包分发；由用户自行设置或通过私有迁移继承。
+```text
+Use $social-reply to reply to this conversation. Give just one suitable reply.
+Use $social-reply. For this turn: natural, no emoji, at most thirty characters.
+Use $social-reply to review the facts and unknowns in this invitation.
+```
 
-## 🧰 本地入口
+Private identities, tone preferences, relationship goals, and boundaries are not distributed in the public package. Set them yourself or inherit them through a private migration.
 
-以下为宿主和维护者入口，普通用户用自然语言即可。所有命令接受JSON stdin并返回JSON stdout，不执行输入中的代码。PRIVATE_DIR为用户授权的私有目录，必须在技能目录外。
+## 🧰 Local entry points
 
-    python -B scripts/social_reply.py --data PRIVATE_DIR init
-    python -B scripts/social_reply.py --data PRIVATE_DIR person-add
-    python -B scripts/social_reply.py --data PRIVATE_DIR context
+These interfaces are for hosts and maintainers; ordinary users can use natural language. Commands accept JSON on stdin and return JSON on stdout. They do not execute code embedded in input. PRIVATE_DIR represents an authorized private directory outside the Skill installation.
 
-首次授权保存后，可用storage-bind绑定已存在的私有目录，此后context等命令无需反复提供--data。默认定位文件在当前用户状态目录，可用--binding指定另一个私有定位文件；--data始终优先。绑定不包含数据库本身，也不保证换设备或清理工作区后仍能访问。
+```bash
+python -B scripts/social_reply.py --data PRIVATE_DIR init
+python -B scripts/social_reply.py --data PRIVATE_DIR person-add
+python -B scripts/social_reply.py --data PRIVATE_DIR context
+```
 
-person-add输入：
+After authorizing storage, use storage-bind to bind an existing private directory. Later commands such as context can then omit --data. The default locator lives in the current user's state directory; --binding selects another private locator. Explicit --data always takes precedence. A binding does not contain the database and does not guarantee access after switching devices or clearing the workspace.
 
-    {"identifier":"PERSON_A","aliases":["示例对象"]}
+person-add input:
 
-context输入：
+```json
+{"identifier":"PERSON_A","aliases":["Example person"]}
+```
 
-    {"identifier":"PERSON_A","topic":"daily","mode":"reply","custom":{"max_chars":30}}
+context input:
 
-context返回资料，由宿主模型继续生成成稿。不要把完整JSON展示给只要求一句回复的用户。
+```json
+{"identifier":"PERSON_A","topic":"daily","mode":"reply","custom":{"max_chars":30}}
+```
 
-同一主题加通用规则超过16条时，2.0.1会明确转STANDARD并提示先整合该主题，避免静默漏掉已批准理论。这个限制不由无关主题或人物数量触发；既有规则和私人数据不会因此删除。
+context returns material for the host model to turn into a reply. Do not display the full JSON to a user who asked for one sentence.
 
-| 命令 | JSON字段 |
-| --- | --- |
-| person-add / person-resolve / profile-get | identifier、可选aliases（未知时空列表）；或alias；或identifier |
-| aliases-set | identifier、aliases、expected；保持原人物ID |
-| source-add | identifier（全局为null）、kind、content；可选event_group、sent |
-| claim-upsert | identifier、content、source_refs、evidence_type、confidence、reason、expected；可选claim_id、status |
-| source-get / memory-list | source_id、identifier；或identifier、limit、offset |
-| source-delete / person-delete | source_id，可选retain_anonymized替换摘要；或identifier、expected |
-| config-get / config-set / config-reset | scope；scope、data、expected；scope、expected |
-| core-get / core-propose | 可选version；rules、reason、可选replace_ids |
-| core-adopt / core-rollback | proposal、expected_version、confirmed；或version、expected_version |
-| extension-propose | scope、content、kind、source_refs、conditions；可选counterevidence |
-| extension-transition | identifier、state、expected_version、confirmed；可选content（仅revised） |
-| extension-rollback / extension-delete / extension-list | identifier、version、expected_version、confirmed；或scope |
-| export / restore | destination；或source、destination（新目录） |
-| migrate | records；默认dry-run，apply=true才写入 |
-| health | 空对象，检查数据库与外键 |
-| check-reply | reply、config；只检查单条、长度和避用词 |
-| extract | archive、destination，可选预算；无需--data |
-| storage-status | 空对象；只检查绑定及文件存在，不等于数据库完整性或云端持久性验证 |
-| storage-bind | directory、expected、confirmed=true；expected来自storage-status的revision；不创建数据库 |
-| storage-backup | destination（全新私有目录）；保存snapshot.sqlite3及recovery.json |
-| storage-recover | manifest、destination（全新私有目录）、confirmed=true；校验后恢复，不自动切换绑定 |
-| user-status | 可选identifier；返回有效配置、各字段来源与版本、延展开关；指定人物时附精简画像和容量提醒 |
+Since 2.0.1, when topic-specific plus general rules exceed 16, processing explicitly switches to STANDARD and requests topic consolidation instead of silently dropping approved rules. Unrelated topics or people do not trigger this limit; existing rules and private data are preserved.
 
-版本号expected来自最新profile-get或config-get，不可猜测。失败按实际结果说明，不假称已保存、加载或删除。
+| Command | JSON fields |
+|---|---|
+| person-add / person-resolve / profile-get | identifier, optional aliases (empty when unknown); or alias; or identifier |
+| aliases-set | identifier, aliases, expected; preserves person ID |
+| source-add | identifier (null for global), kind, content; optional event_group, sent |
+| claim-upsert | identifier, content, source_refs, evidence_type, confidence, reason, expected; optional claim_id, status |
+| source-get / memory-list | source_id, identifier; or identifier, limit, offset |
+| source-delete / person-delete | source_id, optional retain_anonymized replacement summary; or identifier, expected |
+| config-get / config-set / config-reset | scope; scope, data, expected; scope, expected |
+| core-get / core-propose | optional version; rules, reason, optional replace_ids |
+| core-adopt / core-rollback | proposal, expected_version, confirmed; or version, expected_version |
+| extension-propose | scope, content, kind, source_refs, conditions; optional counterevidence |
+| extension-transition | identifier, state, expected_version, confirmed; optional content (revised only) |
+| extension-rollback / extension-delete / extension-list | identifier, version, expected_version, confirmed; or scope |
+| export / restore | destination; or source, destination (new directory) |
+| migrate | records; dry-run by default, writes only with apply=true |
+| health | empty object; checks database integrity and foreign keys |
+| check-reply | reply, config; checks single-reply format, length, and avoided words only |
+| extract | archive, destination, optional budgets; no --data needed |
+| storage-status | empty object; checks binding and file existence, not database integrity or durable cloud persistence |
+| storage-bind | directory, expected, confirmed=true; expected from storage-status revision; does not create a database |
+| storage-backup | destination (new private directory); saves snapshot.sqlite3 and recovery.json |
+| storage-recover | manifest, destination (new private directory), confirmed=true; verifies before recovery and does not switch bindings automatically |
+| user-status | optional identifier; effective settings, per-field sources and revisions, extension switches; compact profile and capacity warnings for a specified person |
 
-context还可传as_of（YYYY-MM-DD），宜使用客户端当天日期；缺省UTC。临时表述的temporal提醒在缓存命中后仍更新，不修改画像或自动撤销边界。相对日期的valid_through只是由记录更新时间得出的复核参考，不能当作原消息日期；“最近”不设武断的过期天数。
+Read expected from the latest profile-get or config-get; do not guess it. Report actual failures without claiming data was saved, loaded, or deleted.
 
-“明天、下周、周末、本月、今年”等常见临时表述也保守提示核实，不推算缺少依据的期限。关键词识别不等于完整时间语义理解，宿主仍须按原文与本轮事实判断。附加时效提示后仍检查64KiB预算，超量走STANDARD整合，原结论与证据全部保留。
+context also accepts as_of (YYYY-MM-DD), preferably the client's current date; the default is UTC. Temporal reminders refresh even on cache hits without changing profiles or automatically revoking boundaries. For relative dates, valid_through is only a review aid derived from the record's update time, not proof of the original message date. “Recently” is not assigned an arbitrary expiry.
 
-## 🌱 配置与延展
+Common Chinese temporary phrases such as “明天” (tomorrow), “下周” (next week), “周末” (the weekend), “本月” (this month), and “今年” (this year) prompt conservative verification instead of unsupported deadlines. This keyword behavior is not proof of equivalent detection in every language. Keyword matching is not complete temporal language understanding; the host must still use the original text and current facts. The 64 KiB budget is checked after adding temporal reminders; overflow uses STANDARD consolidation while preserving claims and evidence.
 
-配置字段：language、tone、max_chars、nickname、avoid、relationship_goal、output_mode、extension_enabled、extension_generate、extension_auto_lowrisk。scope为global、SELF或人物ID。本轮custom只作用本轮；不改变历史事实。config-reset重置该范围，export包含有效配置。
+## 🌱 Settings and extensions
 
-延展默认关闭。extension_enabled控制应用，extension_generate控制候选生成；关闭并保留分支不改变Core。extension-delete清除指定范围的全部分支及历史。分支默认必须审核并由用户确认激活；Core导入是独立审核流程。
+Settings: language, tone, max_chars, nickname, avoid, relationship_goal, output_mode, extension_enabled, extension_generate, extension_auto_lowrisk. scope is global, SELF, or a person ID. Per-turn custom settings apply only to that turn and do not change historical facts. config-reset resets its scope; export includes effective configuration.
 
-## 🗂️ 迁移与恢复
+Extensions are off by default. extension_enabled controls application; extension_generate controls proposing candidates. Disabling application while retaining branches does not change Core. extension-delete removes all branches and history in the specified scope. By default, activation requires review and user confirmation; Core imports follow a separate review process.
 
-1. 保留原文档与视频。校验分卷、CRC、清单及重复项，安全解压到新的私有目录。
-2. 准备私有迁移JSON：records中每项含person_id（或null）、aliases、content，可选claims字符串数组及event_group。
-3. migrate先dry-run，确认映射后apply。来源按哈希去重，旧总结的自动迁移结论标unknown/pending，不假装重读原截图。迁移每项事务提交，中断可按同一映射重试。
-4. 将用户确认的语气、边界和最新目标写入对应私有配置，保留原文档，不复制到公开规则。
-5. export生成一致的未加密快照；restore到新目录并检查health，现有目录不覆盖。原始上传和平台备份不由本地删除操作清除。
+## 🗂️ Migration and recovery
 
-日常备份优先storage-backup，将清单与快照一起保管。storage-recover校验大小、SHA-256、schema、数据库和外键后恢复到新目录；恢复成功后再以最新绑定版本显式storage-bind切换。原目录、旧快照与现有绑定均保留。清单校验用于检测损坏和错配，不提供加密或来源签名。仅本地保存不等于外部备份；宿主持久存储需独立成功回执和后续恢复验证。
+1. Preserve original documents and videos. Check archive volumes, CRC, manifests, and duplicates; extract safely into a new private directory.
+2. Prepare private migration JSON: each records item contains person_id (or null), aliases, content, and optional claims (a string array) and event_group.
+3. Run migrate as a dry-run before apply. Sources are deduplicated by hash; claims automatically migrated from old summaries are unknown/pending, without claiming to reread original screenshots. Each item commits transactionally; interruption can be retried with the same mapping.
+4. Put confirmed tone, boundaries, and current goals in the relevant private configuration. Preserve old documents without copying them into public rules.
+5. export creates a consistent, unencrypted snapshot. restore targets a new directory and checks health without overwriting an existing directory. Local deletion does not erase original uploads or platform backups.
 
-## 🔧 维护
+For routine backups, use storage-backup and keep the manifest with its snapshot. storage-recover checks size, SHA-256, schema, database integrity, and foreign keys before restoring into a new directory. Only after verified recovery, explicitly switch storage-bind using the latest binding revision. Preserve the original directory, older snapshots, and existing binding. Checksums detect corruption and mismatches; they do not provide encryption or a source signature. Local saving is not an external backup. Host persistence requires independent save evidence and a later recovery check.
 
-    python -B scripts/validate_skill.py
-    python -B -m unittest discover -s tests -v
-    python -B scripts/benchmark.py
+## 🔧 Maintenance
 
-Benchmark测量本地上下文准备：SQL读取、逻辑数据文件、字节数和可用的token计数。宿主首token、计费token与完整模型生成延迟若不可观察，标未验证，不用本地毫秒数替代。
+```bash
+python -B scripts/validate_skill.py
+python -B -m unittest discover -s tests -v
+python -B scripts/benchmark.py
+```
 
-设计见 [架构](references/architecture.md)、[画像记忆](references/profile-memory.md)、[理论主干](references/theory-core.md) 和 [延展](references/extensions.md)。
+The benchmark measures local context preparation: SQL reads, logical data files, bytes, and token counts when available. If host first-token timing, billed tokens, or complete model generation latency cannot be observed, mark them unverified rather than substituting local milliseconds.
 
-公开包仅含通用规则、工具和匿名测试。真实资料、私有数据库、导出、凭据、机器路径、私人定位和原工作区Git历史均不进入发行包。自动扫描仍需人工审阅。宿主模型可能处理输入，不承诺零外传、默认加密或平台备份永久擦除。
+Design references: [Architecture](references/architecture.md), [Profiles and memory](references/profile-memory.md), [Core theory](references/theory-core.md), and [Extensions](references/extensions.md). The three READMEs are localized; linked implementation references and the Skill entry are not fully translated.
 
-代码和自写文档采用MIT；第三方视频和用户资料的权利不由本许可授予。
+The public package contains general rules, tools, and anonymous tests only. Real records, private databases, exports, credentials, machine paths, private locators, and workspace Git history do not belong in a public package. Automated scanning still needs human review. The host model may process input; no zero-transmission, default encryption, or permanent platform-backup erasure guarantee is made.
+
+Code and original documentation use MIT. This license does not grant rights to third-party videos or user materials.
